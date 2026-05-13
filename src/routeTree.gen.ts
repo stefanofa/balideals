@@ -9,38 +9,273 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TacoDealsRouteImport } from './routes/taco-deals'
+import { Route as HappyHoursRouteImport } from './routes/happy-hours'
+import { Route as FoodDealsRouteImport } from './routes/food-deals'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as DailyDealsRouteImport } from './routes/daily-deals'
+import { Route as CoffeeDealsRouteImport } from './routes/coffee-deals'
+import { Route as BrunchDealsRouteImport } from './routes/brunch-deals'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DealsWednesdayRouteImport } from './routes/deals/wednesday'
+import { Route as DealsTuesdayRouteImport } from './routes/deals/tuesday'
+import { Route as DealsThursdayRouteImport } from './routes/deals/thursday'
+import { Route as DealsSundayRouteImport } from './routes/deals/sunday'
+import { Route as DealsSaturdayRouteImport } from './routes/deals/saturday'
+import { Route as DealsMondayRouteImport } from './routes/deals/monday'
+import { Route as DealsFridayRouteImport } from './routes/deals/friday'
 
+const TacoDealsRoute = TacoDealsRouteImport.update({
+  id: '/taco-deals',
+  path: '/taco-deals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HappyHoursRoute = HappyHoursRouteImport.update({
+  id: '/happy-hours',
+  path: '/happy-hours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodDealsRoute = FoodDealsRouteImport.update({
+  id: '/food-deals',
+  path: '/food-deals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DailyDealsRoute = DailyDealsRouteImport.update({
+  id: '/daily-deals',
+  path: '/daily-deals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoffeeDealsRoute = CoffeeDealsRouteImport.update({
+  id: '/coffee-deals',
+  path: '/coffee-deals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrunchDealsRoute = BrunchDealsRouteImport.update({
+  id: '/brunch-deals',
+  path: '/brunch-deals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DealsWednesdayRoute = DealsWednesdayRouteImport.update({
+  id: '/deals/wednesday',
+  path: '/deals/wednesday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsTuesdayRoute = DealsTuesdayRouteImport.update({
+  id: '/deals/tuesday',
+  path: '/deals/tuesday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsThursdayRoute = DealsThursdayRouteImport.update({
+  id: '/deals/thursday',
+  path: '/deals/thursday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsSundayRoute = DealsSundayRouteImport.update({
+  id: '/deals/sunday',
+  path: '/deals/sunday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsSaturdayRoute = DealsSaturdayRouteImport.update({
+  id: '/deals/saturday',
+  path: '/deals/saturday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsMondayRoute = DealsMondayRouteImport.update({
+  id: '/deals/monday',
+  path: '/deals/monday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsFridayRoute = DealsFridayRouteImport.update({
+  id: '/deals/friday',
+  path: '/deals/friday',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brunch-deals': typeof BrunchDealsRoute
+  '/coffee-deals': typeof CoffeeDealsRoute
+  '/daily-deals': typeof DailyDealsRoute
+  '/events': typeof EventsRoute
+  '/food-deals': typeof FoodDealsRoute
+  '/happy-hours': typeof HappyHoursRoute
+  '/taco-deals': typeof TacoDealsRoute
+  '/deals/friday': typeof DealsFridayRoute
+  '/deals/monday': typeof DealsMondayRoute
+  '/deals/saturday': typeof DealsSaturdayRoute
+  '/deals/sunday': typeof DealsSundayRoute
+  '/deals/thursday': typeof DealsThursdayRoute
+  '/deals/tuesday': typeof DealsTuesdayRoute
+  '/deals/wednesday': typeof DealsWednesdayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brunch-deals': typeof BrunchDealsRoute
+  '/coffee-deals': typeof CoffeeDealsRoute
+  '/daily-deals': typeof DailyDealsRoute
+  '/events': typeof EventsRoute
+  '/food-deals': typeof FoodDealsRoute
+  '/happy-hours': typeof HappyHoursRoute
+  '/taco-deals': typeof TacoDealsRoute
+  '/deals/friday': typeof DealsFridayRoute
+  '/deals/monday': typeof DealsMondayRoute
+  '/deals/saturday': typeof DealsSaturdayRoute
+  '/deals/sunday': typeof DealsSundayRoute
+  '/deals/thursday': typeof DealsThursdayRoute
+  '/deals/tuesday': typeof DealsTuesdayRoute
+  '/deals/wednesday': typeof DealsWednesdayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brunch-deals': typeof BrunchDealsRoute
+  '/coffee-deals': typeof CoffeeDealsRoute
+  '/daily-deals': typeof DailyDealsRoute
+  '/events': typeof EventsRoute
+  '/food-deals': typeof FoodDealsRoute
+  '/happy-hours': typeof HappyHoursRoute
+  '/taco-deals': typeof TacoDealsRoute
+  '/deals/friday': typeof DealsFridayRoute
+  '/deals/monday': typeof DealsMondayRoute
+  '/deals/saturday': typeof DealsSaturdayRoute
+  '/deals/sunday': typeof DealsSundayRoute
+  '/deals/thursday': typeof DealsThursdayRoute
+  '/deals/tuesday': typeof DealsTuesdayRoute
+  '/deals/wednesday': typeof DealsWednesdayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/brunch-deals'
+    | '/coffee-deals'
+    | '/daily-deals'
+    | '/events'
+    | '/food-deals'
+    | '/happy-hours'
+    | '/taco-deals'
+    | '/deals/friday'
+    | '/deals/monday'
+    | '/deals/saturday'
+    | '/deals/sunday'
+    | '/deals/thursday'
+    | '/deals/tuesday'
+    | '/deals/wednesday'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/brunch-deals'
+    | '/coffee-deals'
+    | '/daily-deals'
+    | '/events'
+    | '/food-deals'
+    | '/happy-hours'
+    | '/taco-deals'
+    | '/deals/friday'
+    | '/deals/monday'
+    | '/deals/saturday'
+    | '/deals/sunday'
+    | '/deals/thursday'
+    | '/deals/tuesday'
+    | '/deals/wednesday'
+  id:
+    | '__root__'
+    | '/'
+    | '/brunch-deals'
+    | '/coffee-deals'
+    | '/daily-deals'
+    | '/events'
+    | '/food-deals'
+    | '/happy-hours'
+    | '/taco-deals'
+    | '/deals/friday'
+    | '/deals/monday'
+    | '/deals/saturday'
+    | '/deals/sunday'
+    | '/deals/thursday'
+    | '/deals/tuesday'
+    | '/deals/wednesday'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrunchDealsRoute: typeof BrunchDealsRoute
+  CoffeeDealsRoute: typeof CoffeeDealsRoute
+  DailyDealsRoute: typeof DailyDealsRoute
+  EventsRoute: typeof EventsRoute
+  FoodDealsRoute: typeof FoodDealsRoute
+  HappyHoursRoute: typeof HappyHoursRoute
+  TacoDealsRoute: typeof TacoDealsRoute
+  DealsFridayRoute: typeof DealsFridayRoute
+  DealsMondayRoute: typeof DealsMondayRoute
+  DealsSaturdayRoute: typeof DealsSaturdayRoute
+  DealsSundayRoute: typeof DealsSundayRoute
+  DealsThursdayRoute: typeof DealsThursdayRoute
+  DealsTuesdayRoute: typeof DealsTuesdayRoute
+  DealsWednesdayRoute: typeof DealsWednesdayRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/taco-deals': {
+      id: '/taco-deals'
+      path: '/taco-deals'
+      fullPath: '/taco-deals'
+      preLoaderRoute: typeof TacoDealsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/happy-hours': {
+      id: '/happy-hours'
+      path: '/happy-hours'
+      fullPath: '/happy-hours'
+      preLoaderRoute: typeof HappyHoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/food-deals': {
+      id: '/food-deals'
+      path: '/food-deals'
+      fullPath: '/food-deals'
+      preLoaderRoute: typeof FoodDealsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/daily-deals': {
+      id: '/daily-deals'
+      path: '/daily-deals'
+      fullPath: '/daily-deals'
+      preLoaderRoute: typeof DailyDealsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coffee-deals': {
+      id: '/coffee-deals'
+      path: '/coffee-deals'
+      fullPath: '/coffee-deals'
+      preLoaderRoute: typeof CoffeeDealsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brunch-deals': {
+      id: '/brunch-deals'
+      path: '/brunch-deals'
+      fullPath: '/brunch-deals'
+      preLoaderRoute: typeof BrunchDealsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +283,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/deals/wednesday': {
+      id: '/deals/wednesday'
+      path: '/deals/wednesday'
+      fullPath: '/deals/wednesday'
+      preLoaderRoute: typeof DealsWednesdayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/tuesday': {
+      id: '/deals/tuesday'
+      path: '/deals/tuesday'
+      fullPath: '/deals/tuesday'
+      preLoaderRoute: typeof DealsTuesdayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/thursday': {
+      id: '/deals/thursday'
+      path: '/deals/thursday'
+      fullPath: '/deals/thursday'
+      preLoaderRoute: typeof DealsThursdayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/sunday': {
+      id: '/deals/sunday'
+      path: '/deals/sunday'
+      fullPath: '/deals/sunday'
+      preLoaderRoute: typeof DealsSundayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/saturday': {
+      id: '/deals/saturday'
+      path: '/deals/saturday'
+      fullPath: '/deals/saturday'
+      preLoaderRoute: typeof DealsSaturdayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/monday': {
+      id: '/deals/monday'
+      path: '/deals/monday'
+      fullPath: '/deals/monday'
+      preLoaderRoute: typeof DealsMondayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals/friday': {
+      id: '/deals/friday'
+      path: '/deals/friday'
+      fullPath: '/deals/friday'
+      preLoaderRoute: typeof DealsFridayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrunchDealsRoute: BrunchDealsRoute,
+  CoffeeDealsRoute: CoffeeDealsRoute,
+  DailyDealsRoute: DailyDealsRoute,
+  EventsRoute: EventsRoute,
+  FoodDealsRoute: FoodDealsRoute,
+  HappyHoursRoute: HappyHoursRoute,
+  TacoDealsRoute: TacoDealsRoute,
+  DealsFridayRoute: DealsFridayRoute,
+  DealsMondayRoute: DealsMondayRoute,
+  DealsSaturdayRoute: DealsSaturdayRoute,
+  DealsSundayRoute: DealsSundayRoute,
+  DealsThursdayRoute: DealsThursdayRoute,
+  DealsTuesdayRoute: DealsTuesdayRoute,
+  DealsWednesdayRoute: DealsWednesdayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

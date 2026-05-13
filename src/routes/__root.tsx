@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 
 import appCss from "../styles.css?url"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { siteConfig, websiteJsonLd } from "@/domain/seo"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -14,18 +15,34 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Bali Deals",
+        name: "theme-color",
+        content: "#f7f3ec",
       },
       {
-        name: "description",
-        content:
-          "A searchable Canggu food, drink, happy hour, and events guide.",
+        name: "application-name",
+        content: siteConfig.name,
       },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "manifest",
+        href: "/manifest.json",
+      },
+      {
+        rel: "icon",
+        href: "/favicon.ico",
+      },
+      {
+        rel: "preconnect",
+        href: "https://www.google.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://maps.googleapis.com",
       },
     ],
   }),
@@ -43,6 +60,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
       </head>
       <body>
         <TooltipProvider>{children}</TooltipProvider>

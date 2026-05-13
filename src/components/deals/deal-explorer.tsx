@@ -38,6 +38,7 @@ import {
   getBaliNow,
   summarizeDeals,
 } from "@/domain/deals"
+import { seoPages } from "@/domain/seo"
 
 const INITIAL_LIMIT = 72
 const LIMIT_STEP = 72
@@ -267,6 +268,26 @@ export function DealExplorer() {
             <MapPanel deal={selectedDeal} />
           </div>
         </div>
+
+        <section className="border border-border bg-card p-5">
+          <h2 className="text-sm font-semibold tracking-widest uppercase">
+            Popular Canggu guides
+          </h2>
+          <nav
+            aria-label="Popular Bali Deals guides"
+            className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {seoPages.slice(0, 12).map((page) => (
+              <a
+                key={page.id}
+                href={page.path}
+                className="border border-border px-3 py-2 text-sm text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
+              >
+                {page.heading}
+              </a>
+            ))}
+          </nav>
+        </section>
 
         <section className="border border-border bg-card p-5">
           <div>
