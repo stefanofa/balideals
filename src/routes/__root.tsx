@@ -14,12 +14,12 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Canggu Deals Bible",
+        title: "Bali Deals",
       },
       {
         name: "description",
         content:
-          "A searchable Canggu food, drink, happy hour, and events guide built from the Bali Food Venturist deals spreadsheet.",
+          "A searchable Canggu food, drink, happy hour, and events guide.",
       },
     ],
     links: [

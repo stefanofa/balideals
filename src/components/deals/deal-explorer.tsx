@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import {
-  RiExternalLinkLine,
-  RiFileExcel2Line,
-  RiFilter3Line,
-  RiSearchLine,
-} from "@remixicon/react"
+import { RiFilter3Line, RiSearchLine } from "@remixicon/react"
 
 import type { DealFilters, KindFilter, SortMode } from "@/domain/deals"
 import { DealCard } from "@/components/deals/deal-card"
@@ -35,12 +30,12 @@ import {
   QUICK_COLLECTIONS,
   SORT_OPTIONS,
   buildFacetCounts,
+  catalogProfile,
+  catalogStats,
   deals,
   defaultFilters,
   filterAndSortDeals,
   getBaliNow,
-  sourceSummary,
-  sourceWorkbook,
   summarizeDeals,
 } from "@/domain/deals"
 
@@ -274,29 +269,18 @@ export function DealExplorer() {
         </div>
 
         <section className="border border-border bg-card p-5">
-          <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <h2 className="text-sm font-semibold tracking-widest uppercase">
-                Source audit
-              </h2>
-              <p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
-                Parsed {fullSummary.totalDeals.toLocaleString()} rows from all
-                ten workbook tabs, including weekday tabs, everyday happy hours,
-                and everyday food promos. {sourceSummary.missingMapLinks} rows
-                are missing map links and remain searchable.
-              </p>
-            </div>
-            <Button asChild variant="outline" size="sm">
-              <a
-                href={sourceWorkbook.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <RiFileExcel2Line />
-                Sheet
-                <RiExternalLinkLine />
-              </a>
-            </Button>
+          <div>
+            <h2 className="text-sm font-semibold tracking-widest uppercase">
+              Catalog coverage
+            </h2>
+            <p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
+              {fullSummary.totalDeals.toLocaleString()} curated deals across{" "}
+              {fullSummary.uniquePlaces.toLocaleString()} places, with weekday
+              specials, daily happy hours, food promos, and events.{" "}
+              {fullSummary.withMaps.toLocaleString()} entries route directly to
+              Google Maps; {catalogStats.missingMapLinks} use smart venue search
+              fallback.
+            </p>
           </div>
         </section>
       </div>
@@ -322,7 +306,12 @@ function MobileFilters({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button type="button" variant="outline" size="icon" className="relative xl:hidden">
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          className="relative xl:hidden"
+        >
           <RiFilter3Line />
           <span className="sr-only">Open filters</span>
           {activeFilterCount > 0 ? (
@@ -356,23 +345,18 @@ function MobileFilters({
 function AppHeader() {
   return (
     <header className="border-b border-border bg-background/95">
-      <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-4 py-5 md:flex-row md:items-center md:justify-between md:px-6">
+      <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-2 px-4 py-5 md:px-6">
         <div className="min-w-0">
           <p className="text-xs font-semibold tracking-[0.28em] text-primary uppercase">
-            Bali Food Venturist
+            {catalogProfile.area}
           </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight md:text-3xl">
-            Canggu Deals Bible
+            {catalogProfile.title}
           </h1>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Button asChild variant="outline" size="sm">
-            <a href={sourceWorkbook.sourceUrl} target="_blank" rel="noreferrer">
-              <RiFileExcel2Line />
-              Source
-              <RiExternalLinkLine />
-            </a>
-          </Button>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
+            Food promos, happy hours, late-night specials, and local events in
+            one fast guide.
+          </p>
         </div>
       </div>
     </header>
@@ -386,7 +370,7 @@ function EmptyResults({ onReset }: { onReset: () => void }) {
         No matching deals
       </h2>
       <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-        The current filters are too narrow for the spreadsheet data.
+        The current filters are too narrow for the catalog.
       </p>
       <Button
         type="button"

@@ -6,7 +6,7 @@ import {
 } from "@remixicon/react"
 
 import type { BaliNow } from "@/domain/deals"
-import { sourceSummary } from "@/domain/deals"
+import { catalogStats } from "@/domain/deals"
 import { cn } from "@/lib/utils"
 
 interface InsightStripProps {
@@ -23,15 +23,15 @@ export function InsightStrip({
   const stats = [
     {
       label: "Deals",
-      value: sourceSummary.totalDeals.toLocaleString(),
+      value: catalogStats.totalDeals.toLocaleString(),
       detail: `${filteredCount.toLocaleString()} visible`,
       icon: RiRestaurant2Line,
       tone: "text-emerald-700 bg-emerald-500/10",
     },
     {
       label: "Places",
-      value: sourceSummary.uniquePlaces.toLocaleString(),
-      detail: `${sourceSummary.multiLocationDeals} multi-location`,
+      value: catalogStats.uniquePlaces.toLocaleString(),
+      detail: `${catalogStats.multiLocationDeals} multi-location`,
       icon: RiMapPin2Line,
       tone: "text-sky-700 bg-sky-500/10",
     },
@@ -43,9 +43,9 @@ export function InsightStrip({
       tone: "text-amber-700 bg-amber-500/10",
     },
     {
-      label: "Busiest source",
+      label: "Largest lane",
       value: "Food",
-      detail: `${sourceSummary.sourceSheets["Everyday Food Promos"]} everyday promos`,
+      detail: `${catalogStats.collections["Daily Food Promos"]} daily food promos`,
       icon: RiCalendarLine,
       tone: "text-rose-700 bg-rose-500/10",
     },

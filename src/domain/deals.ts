@@ -5,18 +5,12 @@ import type {
   PriceBand,
   TimeBucket,
 } from "@/data/deals.generated"
-import {
-  deals,
-  guideCopy,
-  sourceSummary,
-  sourceWorkbook,
-} from "@/data/deals.generated"
+import { catalogProfile, catalogStats, deals } from "@/data/deals.generated"
 
 export {
+  catalogProfile,
+  catalogStats,
   deals,
-  guideCopy,
-  sourceSummary,
-  sourceWorkbook,
   type DayName,
   type DealKind,
   type DealRecord,

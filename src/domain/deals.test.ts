@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest"
 
 import type { BaliNow } from "@/domain/deals"
 import {
+  catalogStats,
   deals,
   defaultFilters,
   filterAndSortDeals,
   getBaliNow,
   getMapsSearchUrl,
-  sourceSummary,
 } from "@/domain/deals"
 
 describe("deal catalog", () => {
@@ -17,12 +17,12 @@ describe("deal catalog", () => {
     label: "Wed 12:00",
   }
 
-  it("contains the normalized workbook rows from every deal tab", () => {
-    expect(sourceSummary.totalDeals).toBe(630)
-    expect(sourceSummary.uniquePlaces).toBe(266)
-    expect(sourceSummary.sourceSheets).toMatchObject({
-      "Everyday Food Promos": 154,
-      "Everyday Happy Hours": 108,
+  it("contains the expected catalog coverage", () => {
+    expect(catalogStats.totalDeals).toBe(630)
+    expect(catalogStats.uniquePlaces).toBe(266)
+    expect(catalogStats.collections).toMatchObject({
+      "Daily Food Promos": 154,
+      "Daily Happy Hours": 108,
       Wednesday: 69,
     })
   })
@@ -38,7 +38,7 @@ describe("deal catalog", () => {
         query: "oyster",
         sort: "place",
       },
-      wednesdayNoon,
+      wednesdayNoon
     )
 
     expect(results.length).toBeGreaterThan(0)
@@ -48,20 +48,20 @@ describe("deal catalog", () => {
           deal.days.includes("Wednesday") &&
           deal.kind === "food-promo" &&
           deal.searchText.toLowerCase().includes("oyster") &&
-          (deal.minPriceK === null || deal.minPriceK <= 100),
-      ),
+          (deal.minPriceK === null || deal.minPriceK <= 100)
+      )
     ).toBe(true)
   })
 
-  it("builds a Google Maps search URL when the sheet row has no map link", () => {
+  it("builds a Google Maps search URL when an entry has no direct map link", () => {
     const missingMapDeal = deals.find((deal) => deal.mapLinks.length === 0)
 
     if (!missingMapDeal) {
-      throw new Error("Expected at least one source row without a map link")
+      throw new Error("Expected at least one catalog entry without a map link")
     }
 
     expect(getMapsSearchUrl(missingMapDeal)).toContain(
-      "https://www.google.com/maps/search/",
+      "https://www.google.com/maps/search/"
     )
   })
 

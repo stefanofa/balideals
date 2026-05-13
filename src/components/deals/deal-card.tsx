@@ -1,6 +1,5 @@
 import {
   RiCalendarLine,
-  RiExternalLinkLine,
   RiMapPin2Line,
   RiPriceTag3Line,
   RiStarLine,
@@ -129,10 +128,6 @@ export function DealCard({ deal, selected, onSelect }: DealCardProps) {
             Reviews
           </a>
         </Button>
-        <span className="ml-auto inline-flex items-center gap-1 text-[0.65rem] font-semibold tracking-widest text-muted-foreground uppercase">
-          Row {deal.sourceRow}
-          <RiExternalLinkLine className="size-3" />
-        </span>
       </div>
     </article>
   )
