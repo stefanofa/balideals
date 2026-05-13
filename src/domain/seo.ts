@@ -1,4 +1,5 @@
 import type { DealFilters, DealRecord } from "@/domain/deals"
+import type { PlaceProfile } from "@/domain/places"
 import {
   DAYS,
   DAY_LABELS,
@@ -10,6 +11,7 @@ import {
   getMapsSearchUrl,
   getReviewsUrl,
 } from "@/domain/deals"
+import { placeDescription, placePath } from "@/domain/places"
 
 const siteUrl = "https://balideals.com"
 
@@ -201,6 +203,26 @@ export function routeHead(page: SeoPage) {
   }
 }
 
+export function placeHead(place: PlaceProfile) {
+  const path = placePath(place)
+  const title = `${place.name} Deals in Canggu | Bali Deals`
+  const description = placeDescription(place)
+
+  return {
+    meta: pageMeta({
+      title,
+      description,
+      path,
+      keywords: [
+        `${place.name} deals`,
+        `${place.name} Canggu`,
+        ...place.categories.slice(0, 4),
+      ],
+    }),
+    links: [{ rel: "canonical", href: canonicalUrl(path) }],
+  }
+}
+
 export function homeHead() {
   return {
     meta: pageMeta({
@@ -229,7 +251,7 @@ export const websiteJsonLd = {
 
 export function landingPageJsonLd(
   page: SeoPage,
-  featuredDeals: Array<DealRecord>,
+  featuredDeals: Array<DealRecord>
 ) {
   return [
     {
@@ -282,6 +304,57 @@ export function landingPageJsonLd(
           url: getMapsSearchUrl(deal),
         },
       })),
+    },
+  ]
+}
+
+export function placeJsonLd(place: PlaceProfile) {
+  const url = canonicalUrl(placePath(place))
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: place.name,
+      url,
+      description: placeDescription(place),
+      areaServed: {
+        "@type": "Place",
+        name: siteConfig.area,
+      },
+      sameAs: place.mapLinks[0] ? [place.mapLinks[0]] : undefined,
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: `${place.name} deals`,
+        itemListElement: place.deals.slice(0, 24).map((deal, index) => ({
+          "@type": "Offer",
+          position: index + 1,
+          name: deal.deal,
+          description: `${formatDays(deal)} · ${deal.timeDisplay} · ${
+            deal.priceRaw || "Price varies"
+          }`,
+          availability: "https://schema.org/InStoreOnly",
+          url: getMapsSearchUrl(deal),
+        })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: siteConfig.name,
+          item: canonicalUrl("/"),
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: place.name,
+          item: url,
+        },
+      ],
     },
   ]
 }

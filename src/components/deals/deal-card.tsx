@@ -15,6 +15,7 @@ import {
   getMapsSearchUrl,
   getReviewsUrl,
 } from "@/domain/deals"
+import { placePathForName } from "@/domain/places"
 import { cn } from "@/lib/utils"
 
 interface DealCardProps {
@@ -34,6 +35,13 @@ export function DealCard({ deal, selected, onSelect }: DealCardProps) {
       aria-pressed={selected}
       onClick={() => onSelect(deal)}
       onKeyDown={(event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target.closest("a,button")
+        ) {
+          return
+        }
+
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault()
           onSelect(deal)
@@ -57,7 +65,13 @@ export function DealCard({ deal, selected, onSelect }: DealCardProps) {
             ) : null}
           </div>
           <h3 className="line-clamp-2 text-lg font-semibold tracking-tight">
-            {deal.placeName}
+            <a
+              href={placePathForName(deal.placeName)}
+              className="transition hover:text-primary"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {deal.placeName}
+            </a>
           </h3>
         </div>
         <div className="grid size-9 shrink-0 place-items-center bg-primary/10 text-primary">

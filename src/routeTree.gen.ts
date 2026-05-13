@@ -17,6 +17,7 @@ import { Route as DailyDealsRouteImport } from './routes/daily-deals'
 import { Route as CoffeeDealsRouteImport } from './routes/coffee-deals'
 import { Route as BrunchDealsRouteImport } from './routes/brunch-deals'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlacesSlugRouteImport } from './routes/places/$slug'
 import { Route as DealsWednesdayRouteImport } from './routes/deals/wednesday'
 import { Route as DealsTuesdayRouteImport } from './routes/deals/tuesday'
 import { Route as DealsThursdayRouteImport } from './routes/deals/thursday'
@@ -63,6 +64,11 @@ const BrunchDealsRoute = BrunchDealsRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacesSlugRoute = PlacesSlugRouteImport.update({
+  id: '/places/$slug',
+  path: '/places/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DealsWednesdayRoute = DealsWednesdayRouteImport.update({
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/deals/thursday': typeof DealsThursdayRoute
   '/deals/tuesday': typeof DealsTuesdayRoute
   '/deals/wednesday': typeof DealsWednesdayRoute
+  '/places/$slug': typeof PlacesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/deals/thursday': typeof DealsThursdayRoute
   '/deals/tuesday': typeof DealsTuesdayRoute
   '/deals/wednesday': typeof DealsWednesdayRoute
+  '/places/$slug': typeof PlacesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/deals/thursday': typeof DealsThursdayRoute
   '/deals/tuesday': typeof DealsTuesdayRoute
   '/deals/wednesday': typeof DealsWednesdayRoute
+  '/places/$slug': typeof PlacesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/deals/thursday'
     | '/deals/tuesday'
     | '/deals/wednesday'
+    | '/places/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/deals/thursday'
     | '/deals/tuesday'
     | '/deals/wednesday'
+    | '/places/$slug'
   id:
     | '__root__'
     | '/'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/deals/thursday'
     | '/deals/tuesday'
     | '/deals/wednesday'
+    | '/places/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   DealsThursdayRoute: typeof DealsThursdayRoute
   DealsTuesdayRoute: typeof DealsTuesdayRoute
   DealsWednesdayRoute: typeof DealsWednesdayRoute
+  PlacesSlugRoute: typeof PlacesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -281,6 +294,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/places/$slug': {
+      id: '/places/$slug'
+      path: '/places/$slug'
+      fullPath: '/places/$slug'
+      preLoaderRoute: typeof PlacesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/deals/wednesday': {
@@ -351,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   DealsThursdayRoute: DealsThursdayRoute,
   DealsTuesdayRoute: DealsTuesdayRoute,
   DealsWednesdayRoute: DealsWednesdayRoute,
+  PlacesSlugRoute: PlacesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

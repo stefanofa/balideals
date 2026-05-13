@@ -11,6 +11,7 @@ import {
   seoPages,
   siteConfig,
 } from "@/domain/seo"
+import { placePath, places } from "@/domain/places"
 
 describe("SEO configuration", () => {
   it("defines unique crawlable landing pages", () => {
@@ -57,6 +58,9 @@ describe("SEO configuration", () => {
     expect(sitemap).toContain(canonicalUrl("/"))
     for (const page of seoPages) {
       expect(sitemap).toContain(canonicalUrl(page.path))
+    }
+    for (const place of places) {
+      expect(sitemap).toContain(canonicalUrl(placePath(place)))
     }
 
     expect(robots).toContain(`Sitemap: ${canonicalUrl("/sitemap.xml")}`)

@@ -5,6 +5,7 @@ import type { SeoPage } from "@/domain/seo"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { formatDays, formatKind } from "@/domain/deals"
+import { placePathForName } from "@/domain/places"
 import {
   featuredDealsForPage,
   getDealExternalLinks,
@@ -132,7 +133,12 @@ function FeaturedDeal({ deal }: { deal: DealRecord }) {
         ) : null}
       </div>
       <h3 className="mt-3 text-lg font-semibold tracking-tight">
-        {deal.placeName}
+        <a
+          href={placePathForName(deal.placeName)}
+          className="hover:text-primary"
+        >
+          {deal.placeName}
+        </a>
       </h3>
       <p className="mt-2 line-clamp-3 text-sm leading-6 text-foreground/85">
         {deal.deal}
